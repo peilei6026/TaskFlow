@@ -1,0 +1,58 @@
+{
+  "name": "lightweight-task-management-system",
+  "version": "1.0.0",
+  "description": "轻量任务管理系统 - 基于React的全栈应用",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:unit": "vitest run --reporter=verbose",
+    "test:integration": "vitest run --reporter=verbose src/__tests__/integration.test.jsx",
+    "test:performance": "vitest run --reporter=verbose src/__tests__/performance.test.js",
+    "test:e2e": "vitest run --reporter=verbose src/__tests__/e2e.test.jsx",
+    "test:watch": "vitest --watch",
+    "test:ci": "vitest run --coverage --reporter=verbose",
+    "start:fullstack": "./scripts/start-full-stack.sh",
+    "backend": "cd backend && npm run start:dev",
+    "frontend": "npm run dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.0.2",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@fullcalendar/interaction": "^6.1.19",
+    "@fullcalendar/react": "^6.1.19",
+    "@fullcalendar/timegrid": "^6.1.19",
+    "antd": "^5.27.3",
+    "axios": "^1.12.1",
+    "dayjs": "^1.11.18",
+    "mockjs": "^1.1.0",
+    "nvm": "^0.0.4",
+    "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "jsdom": "^27.0.0",
+    "vite": "^4.4.0",
+    "vitest": "^3.2.4"
+  },
+  "keywords": [
+    "task-management",
+    "react",
+    "vite",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "MIT"
+}

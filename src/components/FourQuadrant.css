@@ -1,0 +1,137 @@
+.four-quadrant-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quadrant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 600px;
+}
+
+.quadrant {
+  display: flex;
+  flex-direction: column;
+}
+
+.quadrant-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-width: 2px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.quadrant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.quadrant-card .ant-card-body {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quadrant-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.quadrant-content {
+  flex: 1;
+  min-height: 200px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.quadrant-content.dragging-over {
+  background-color: rgba(24, 144, 255, 0.1);
+  border: 2px dashed #1890ff;
+}
+
+.quadrant-item {
+  margin-bottom: 8px;
+  transition: transform 0.2s ease;
+}
+
+.quadrant-item.dragging {
+  transform: rotate(5deg);
+  opacity: 0.8;
+}
+
+.quadrant-item .ant-card {
+  cursor: grab;
+  border: 1px solid #d9d9d9;
+  transition: all 0.2s ease;
+}
+
+.quadrant-item .ant-card:hover {
+  border-color: #40a9ff;
+  box-shadow: 0 2px 4px rgba(64, 169, 255, 0.2);
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-description {
+  font-size: 12px;
+  color: #8c8c8c;
+  line-height: 1.4;
+}
+
+.empty-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: #bfbfbf;
+  font-size: 14px;
+  border: 2px dashed #d9d9d9;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .quadrant-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    height: auto;
+    gap: 12px;
+  }
+
+  .quadrant-card {
+    min-height: 250px;
+  }
+
+  .four-quadrant-container {
+    padding: 16px;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quadrant-item {
+  animation: fadeIn 0.3s ease;
+}

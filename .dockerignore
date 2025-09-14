@@ -1,0 +1,48 @@
+# Docker ignore file for 任务管理系统
+
+# 开发文件
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 本地环境文件
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git 文件
+.git/
+.gitignore
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 构建输出
+/dist
+/build
+
+# 日志文件
+logs/
+*.log
+
+# 临时文件
+.tmp/
+temp/
+
+# macOS 系统文件
+.DS_Store
+
+# 测试覆盖率
+coverage/
+
+# 依赖分析
+bundle-analyzer/
+
+# 开发文档草稿
+DEVELOPMENT.md

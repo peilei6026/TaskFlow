@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  task-manager:
+    build: .
+    container_name: task-management-system
+    ports:
+      - "3001:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - task-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.task-manager.rule=Host(`tasks.local`)"
+      - "traefik.http.services.task-manager.loadbalancer.server.port=80"
+    volumes:
+      # 如果需要持久化配置，可以挂载配置文件
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # 为未来扩展预留的数据库服务
+  # database:
+  #   image: sqlite:latest
+  #   container_name: task-manager-db
+  #   volumes:
+  #     - task_data:/var/lib/sqlite
+  #   networks:
+  #     - task-network
+
+networks:
+  task-network:
+    driver: bridge
+
+volumes:
+  task_data:
+    driver: local

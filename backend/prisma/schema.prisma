@@ -1,0 +1,133 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite 不支持 enum，使用字符串约束替代
+
+model User {
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  email       String   @unique
+  password    String
+  role        String @default("USER") // ADMIN, USER
+  status      String @default("ACTIVE") // ACTIVE, INACTIVE, SUSPENDED
+  displayName String?
+  name        String?
+  department  String?
+  position    String?
+  avatar      String?
+  phone       String?
+  lastLoginAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联关系
+  assignedTasks     Task[]        @relation("TaskAssignee")
+  createdTasks      Task[]        @relation("TaskCreator")
+  taskComments      TaskComment[]
+  timeEntries       TimeEntry[]
+  calendarEvents    CalendarEvent[]
+  refreshTokens     RefreshToken[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+model Task {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String?
+  status      String @default("TODO") // TODO, IN_PROGRESS, COMPLETED, CANCELLED
+  priority    String @default("MEDIUM") // LOW, MEDIUM, HIGH
+  dueDate     DateTime?
+  assigneeId  Int?
+  creatorId   Int
+  tags        String? // JSON string for tags
+  estimatedHours Float?
+  actualHours Float?
+  progress    Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // 关联关系
+  assignee    User?         @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  creator     User          @relation("TaskCreator", fields: [creatorId], references: [id])
+  comments    TaskComment[]
+  timeEntries TimeEntry[]
+
+  @@map("tasks")
+}
+
+model TaskComment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  taskId    Int
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 关联关系
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("task_comments")
+}
+
+model TimeEntry {
+  id          Int      @id @default(autoincrement())
+  description String?
+  hours       Float
+  date        DateTime
+  taskId      Int?
+  userId      Int
+  project     String?
+  billable    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联关系
+  task Task? @relation(fields: [taskId], references: [id])
+  user User  @relation(fields: [userId], references: [id])
+
+  @@map("time_entries")
+}
+
+model CalendarEvent {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  startTime   DateTime
+  endTime     DateTime
+  type        String @default("MEETING") // MEETING, DEADLINE, REMINDER, PERSONAL
+  location    String?
+  attendees   String? // JSON string for attendees
+  userId      Int
+  allDay      Boolean   @default(false)
+  recurring   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联关系
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("calendar_events")
+}

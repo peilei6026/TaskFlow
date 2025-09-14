@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(npm test:*)",
+      "Bash(pkill:*)",
+      "Bash(npm run dev:*)",
+      "Bash(sed:*)",
+      "Bash(cat:*)",
+      "Read(///**)",
+      "Bash(perl:*)",
+      "Bash(npm run:*)",
+      "Bash(export:*)",
+      "Bash(npm start)",
+      "Bash(npx prisma:*)",
+      "Bash(sqlite3:*)",
+      "Bash(chmod:*)",
+      "Read(//Users/peilei/personal/code/**)",
+      "WebSearch",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(kill:*)",
+      "Bash(PORT=3001 npm run start:dev)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
