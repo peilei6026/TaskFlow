@@ -101,7 +101,7 @@
 - **开发者**：john@example.com / password123
 - **测试员**：test@example.com / password123
 
-> 详细登录信息请查看：[登录凭据文档](./LOGIN_CREDENTIALS.md)
+> 详细登录信息请查看：[登录凭据文档](./docs/login-credentials.md)
 
 ## 📁 项目结构
 
@@ -158,18 +158,18 @@ npm run db:studio    # 打开数据库管理界面
 - [ ] 通知系统
 - [ ] 数据分析和导出
 
-详细计划请查看：[生产就绪评估报告](./PRODUCT_READINESS_ASSESSMENT.md)
+详细计划请查看：[生产就绪评估报告](./docs/project-status.md)
 
 ## 📋 任务清单
 
-开发团队待办事项：[生产就绪检查清单](./PRODUCTION_READINESS_CHECKLIST.md)
+开发团队待办事项：[生产就绪检查清单](./docs/project-status.md)
 
 ## 📖 文档
 
-- [API 接口文档](./API_DOCUMENTATION.md)
-- [后端开发指南](./backend/README.md)
-- [产品需求文档](./QUADRANT_FEATURES.md)
-- [测试指南](./TESTING.md)
+- [API 接口文档](./docs/api-guide.md)
+- [后端开发指南](./docs/backend-guide.md)
+- [产品需求文档](./docs/product-features.md)
+- [测试指南](./docs/testing-guide.md)
 
 ## 🔧 技术栈
 
@@ -208,7 +208,7 @@ npm run db:studio    # 打开数据库管理界面
 ## 📞 支持
 
 如有问题或建议，请：
-1. 查看[产品就绪评估报告](./PRODUCT_READINESS_ASSESSMENT.md)了解已知问题
+1. 查看[产品就绪评估报告](./docs/project-status.md)了解已知问题
 2. 创建 Issue 报告问题
 3. 联系开发团队
 

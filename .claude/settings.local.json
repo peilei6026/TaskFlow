@@ -21,7 +21,11 @@
       "Bash(lsof:*)",
       "Bash(xargs kill:*)",
       "Bash(kill:*)",
-      "Bash(PORT=3001 npm run start:dev)"
+      "Bash(PORT=3001 npm run start:dev)",
+      "Bash(find:*)",
+      "Bash(paste:*)",
+      "Bash(for file in docs/*.md)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
